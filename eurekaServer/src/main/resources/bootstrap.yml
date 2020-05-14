@@ -1,0 +1,33 @@
+# server port
+server:
+  port: 8090
+
+# Configure discovery server
+spring:
+  profiles:
+  - default
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+    register-with-eureka: false
+    fetch-registry: false
+    
+---
+
+server:
+  port: 8091
+
+spring:
+  profiles:
+  - primary
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+    register-with-eureka: false
+    fetch-registry: false

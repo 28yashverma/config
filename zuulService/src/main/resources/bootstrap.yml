@@ -1,0 +1,41 @@
+server:
+  port: 8094
+  
+  
+# Zuul Related configurations
+
+zuul:
+  ignored-services: '*'                           # Cannot allow all the request to map to services
+  host:
+    max-total-connections: 1000
+    max-per-route-connections: 1000
+  routes:
+    paymentService:
+      path: /payments/**
+      sensitive-headers: null
+      service-id: paymentService
+      strip-prefix: false
+    orderService:
+      path: /orders/**
+      sensitive-headers: null
+      service-id: orderService                      # Should be same as registered with Eureka
+      strip-prefix: false
+    deliveryService:
+      path: /deliveries/**
+      sensitive-headers: null
+      service-id: deliveryService
+      strip-prefix: false
+      
+# Eureka Registration for Zuul
+
+eureka:
+  client:
+    registry-fetch-interval-seconds: 5
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:8090/eureka/
+  
+  instance:
+    hostname: localhost
+  

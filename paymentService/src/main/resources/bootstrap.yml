@@ -1,0 +1,14 @@
+# Order Client Service port
+server:
+  port: 8092
+  
+# Eureka Client configuration for Order Service
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:8090/eureka
+      
+  instance:
+    hostname: localhost
