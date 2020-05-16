@@ -1,4 +1,4 @@
-# Order Client Service port
+# Payment Client Service port
 server:
   port: 8092
   

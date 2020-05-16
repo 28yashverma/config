@@ -1,6 +1,6 @@
-# Delivery Client Service port
+# Ribbon Client Service port
 server:
-  port: 8093
+  port: 8094
   
 # Eureka Client configuration for Order Service
 eureka:
@@ -9,6 +9,14 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://${eureka.instance.hostname}:8090/eureka
+    healthcheck:
+      enabled: true
       
   instance:
     hostname: localhost
+    lease-renewal-interval-in-seconds: 1
+    lease-expiration-duration-in-seconds: 2
+    
+ribbon:
+  eureka:
+    enabled: true
