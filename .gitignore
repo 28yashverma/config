@@ -4,6 +4,8 @@ target
 HELP.md
 Servers
 .mvn
+mvnw
+mvnw.cmd
 
 deliveryService/.mvn
 deliveryService/.settings
