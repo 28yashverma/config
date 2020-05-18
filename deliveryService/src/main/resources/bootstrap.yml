@@ -12,3 +12,7 @@ eureka:
       
   instance:
     hostname: localhost
+    
+spring:
+  sleuth:
+    enabled: true

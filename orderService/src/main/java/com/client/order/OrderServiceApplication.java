@@ -6,6 +6,8 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import brave.sampler.Sampler;
+
 @SpringBootApplication
 @EnableEurekaClient
 public class OrderServiceApplication {
@@ -17,6 +19,11 @@ public class OrderServiceApplication {
 	@Bean
 	public WebClient.Builder getBuilder() {
 		return WebClient.builder();
+	}
+	
+	@Bean
+	public Sampler defaultSampler() {
+		return Sampler.ALWAYS_SAMPLE;
 	}
 
 }
