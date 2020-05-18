@@ -6,16 +6,20 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import com.client.order.model.Order;
-import com.client.order.repository.OrderRepo;
+import com.client.order.service.OrderService;
 
 @RestController
 @RequestMapping("/orders")
 public class OrderController {
 
 	@Autowired
-	private OrderRepo orderRepo;
+	private WebClient.Builder webClient;
+
+	@Autowired
+	private OrderService orderService;
 
 	@GetMapping("/hello")
 	public String sayHello() {
@@ -28,10 +32,16 @@ public class OrderController {
 		order.setOrderName("Burrito");
 		order.setOrderNo("12");
 		order.setOrderPlacedBy("Demo name");
-		order.setOrderStatus("Placed");
-		order.setIsOrderCancelled(false);
-
-		orderRepo.save(order);
+		orderService.save(order);
+		
+		String didWeReceiveThePayment = webClient.build()
+		.get()
+		.uri("http://localhost:8092/payments/payment")
+		.retrieve()
+		.bodyToMono(String.class)
+		.block();
+		
+		System.out.println(didWeReceiveThePayment);
 
 		return new ResponseEntity<Order>(order, HttpStatus.OK);
 	}

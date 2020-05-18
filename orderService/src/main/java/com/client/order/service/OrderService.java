@@ -1,8 +1,9 @@
 package com.client.order.service;
 
-import org.springframework.stereotype.Service;
+import com.client.order.model.Order;
 
-@Service
 public interface OrderService {
+
+	public Order save(Order order);
 
 }

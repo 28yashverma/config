@@ -15,9 +15,7 @@ public class Order {
 	private Long orderId;
 	private String orderNo;
 	private String orderName;
-	private String orderStatus;
 	private String orderPlacedBy;
-	private Boolean isOrderCancelled;
 
 	public Long getOrderId() {
 		return orderId;
@@ -35,14 +33,6 @@ public class Order {
 		this.orderNo = orderNo;
 	}
 
-	public String getOrderStatus() {
-		return orderStatus;
-	}
-
-	public void setOrderStatus(String orderStatus) {
-		this.orderStatus = orderStatus;
-	}
-
 	public String getOrderPlacedBy() {
 		return orderPlacedBy;
 	}
@@ -51,26 +41,18 @@ public class Order {
 		this.orderPlacedBy = orderPlacedBy;
 	}
 
-	public Boolean getIsOrderCancelled() {
-		return isOrderCancelled;
-	}
-
-	public void setIsOrderCancelled(Boolean isOrderCancelled) {
-		this.isOrderCancelled = isOrderCancelled;
-	}
-
-	@Override
-	public String toString() {
-		return "Order [orderId=" + orderId + ", orderNo=" + orderNo + ", orderStatus=" + orderStatus
-				+ ", orderPlacedBy=" + orderPlacedBy + ", isOrderCancelled=" + isOrderCancelled + "]";
-	}
-
 	public String getOrderName() {
 		return orderName;
 	}
 
 	public void setOrderName(String orderName) {
 		this.orderName = orderName;
+	}
+
+	@Override
+	public String toString() {
+		return "Order [orderId=" + orderId + ", orderNo=" + orderNo + ", orderName=" + orderName + ", orderPlacedBy="
+				+ orderPlacedBy + "]";
 	}
 
 }
