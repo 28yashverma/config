@@ -6,6 +6,7 @@ Servers
 .mvn
 mvnw
 mvnw.cmd
+elk/*
 
 deliveryService/.mvn
 deliveryService/.settings
